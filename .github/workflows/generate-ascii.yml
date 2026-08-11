@@ -21,9 +21,8 @@ jobs:
           cowsay -f dragon "Run for cover!!!! I am a DRAGON" >> dragon.txt
       - uses: actions/upload-artifact@v7
         with:
-          name: dragon_text_file
+          name: dragon
           path: ./dragon.txt
-          archive: false
 
   job_3_test:
     needs: [job_2_build]
@@ -31,7 +30,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v8
         with:
-          name: dragon_text_file
+          name: dragon
       - name: Test the file
         run: |
           grep -i "dragon" dragon.txt
@@ -42,7 +41,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v8
         with:
-          name: dragon_text_file
+          name: dragon
 
       - name: Print the file
         run: cat dragon.txt
