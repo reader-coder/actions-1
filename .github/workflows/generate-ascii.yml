@@ -2,7 +2,7 @@ name: Generate ASCII Artwork
 on: push
 
 jobs:
-  generate_ascii_artwork:
+  job_1_list_items:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo
@@ -11,7 +11,18 @@ jobs:
       - name: List files
         run: ls -ltra
 
-      - name: Executing ASCII Script
+  job_2_build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Installing and executing the package
         run: |
-            chmod 777 ./ascii-script.sh
-            ./ascii-script.sh
+          sudo apt-get install cowsay -y
+          cowsay -f dragon "Run for cover!!!! I am a DRAGON" >> dragon.txt
+
+  job_3_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test and print
+        run: |
+          grep -i "dragon" dragon.txt
+          cat dragon.txt
