@@ -12,6 +12,7 @@ jobs:
         run: ls -ltra
 
   job_2_build:
+    needs: job_1_list_items
     runs-on: ubuntu-latest
     steps:
       - name: Installing and executing the package
@@ -20,6 +21,7 @@ jobs:
           cowsay -f dragon "Run for cover!!!! I am a DRAGON" >> dragon.txt
 
   job_3_test:
+    needs: [job_2_build]
     runs-on: ubuntu-latest
     steps:
       - name: Test and print
