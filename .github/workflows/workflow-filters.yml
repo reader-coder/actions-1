@@ -1,0 +1,27 @@
+name: Exploring workflow filters and events 
+
+on:
+  workflow_dispatch:
+#   schedule:
+#     - cron: "*/59 * * * *"
+  push:
+    # branches-ignore: 
+    #     - feature/*
+    #     - test/**
+    branches:
+      - main
+      - '!feature/*'
+  pull_request:
+    types: 
+        - opened
+        - closed
+    paths-ignore: 
+        - test.md
+    branches:
+      - main
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: echo this workflow/job/step is executed for event type = ${{github.event}}
